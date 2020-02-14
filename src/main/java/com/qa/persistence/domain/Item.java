@@ -49,12 +49,12 @@ public class Item {
 		return quantity;
 	}
 
-	public void setQuantiy(long quantity) {
-		this.quantity = quantity;
+	//public void setQuantiy(invalid invalid) {
+	//	this.quantity = invalid;
 	}
 	
 	
 	
 
 
-}
+

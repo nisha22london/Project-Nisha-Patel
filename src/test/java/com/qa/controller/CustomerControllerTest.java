@@ -1,8 +1,6 @@
 package com.qa.controller;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -49,18 +47,6 @@ public class CustomerControllerTest {
 	/**
 	 *
 	 */
-//	@Test
-//	public void updateTest() {
-//		int id = 1;
-//		String Name = "Rhys";
-//		String Address = "Thompson";
-//		Mockito.doReturn(id,Name,Address).when(customerController).getInput();
-//		Customer customer = new Customer(L1,Name,Address);
-//		Mockito.when(customerServices.update(id, customer)).thenReturn(customer);
-//		assertEquals(customer, customerController.update());
-//	}
-//	
-	
 
 	
 @Test

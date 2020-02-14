@@ -80,8 +80,9 @@ public class CustomerDaoMysql implements Dao<Customer> {
 		}
 			
 ;
-	@Override
-	public void delete(Customer customer) {
+	
+	
+	public void delete (Customer customer) {
 		// TODO Auto-generated method stub
 		String sql = "DELETE FROM customer WHERE id = ?";
 		try {
@@ -98,6 +99,19 @@ public class CustomerDaoMysql implements Dao<Customer> {
 		
 
 		}
+
+	@Override
+	public void delete(long t) {
+		// TODO Auto-generated method stub
+		
 	}
+		
+		
+	}
+
+	
+		
+	
+	
 ;
 
