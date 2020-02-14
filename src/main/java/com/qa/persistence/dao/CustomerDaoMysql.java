@@ -20,7 +20,8 @@ public class CustomerDaoMysql implements Dao<Customer> {
 
 	private Connection connection;
 
-	public List<Customer> readAll() {
+	public List<Customer> readAll() { 
+		
 		ArrayList<Customer> customers = new ArrayList<Customer>();
 		try (Connection connection = DriverManager.getConnection("jdbc:mysql://35.228.88.14:3306/custdb",
 				Config.username, Config.password); Statement statement = connection.createStatement();) {
@@ -39,7 +40,8 @@ public class CustomerDaoMysql implements Dao<Customer> {
 			}
 		} catch (Exception e) {
 			logger.error("The customer table has been not read");
-		} finally {
+		} finally
+		{
 		}
 		;
 
@@ -57,10 +59,9 @@ public class CustomerDaoMysql implements Dao<Customer> {
 			logger.error(e);
 		} finally {
 		}
-		;
 
 		}
-	
+	;
 
 	public void update(long id, Customer customer) {
 		String sql = "UPDATE customer set Name = ?, Address=?, where id = ?";
@@ -75,11 +76,10 @@ public class CustomerDaoMysql implements Dao<Customer> {
 			logger.error("The customer has not been updated");
 		} finally {
 		}
-		;
 
 		}
 			
-
+;
 	@Override
 	public void delete(Customer customer) {
 		// TODO Auto-generated method stub
@@ -95,9 +95,9 @@ public class CustomerDaoMysql implements Dao<Customer> {
 
 		} finally {
 		}
-		;
+		
 
 		}
 	}
-
+;
 

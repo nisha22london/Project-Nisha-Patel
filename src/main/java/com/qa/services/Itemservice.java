@@ -13,8 +13,6 @@ public class Itemservice implements CrudServices<Item> {
 		this.itemDao = itemDao;
 	}
 
-
-
 	public void create(Item item) {
 		itemDao.create(item);
 	}
@@ -22,22 +20,15 @@ public class Itemservice implements CrudServices<Item> {
 	public void update(long id, Item item) {
 		itemDao.update(id, item);
 	}
-
 	
 	@Override
 	public List<Item> readAll() {
-		// TODO Auto-generated method stub
 		return itemDao.readAll();
 	}
 
-
-
 	@Override
-	public void delete(Item t) {
+	public void delete(long t) {
 		itemDao.delete(t);
 		
 	}
-
-
-
 }

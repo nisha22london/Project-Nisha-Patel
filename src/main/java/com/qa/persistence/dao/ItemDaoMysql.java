@@ -22,8 +22,8 @@ public class ItemDaoMysql implements Dao<Item> {
 
 	public List<Item> readAll() {
 		ArrayList<Item> items = new ArrayList<Item>();
-		try (Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/ims", Config.username,
-				Config.password)) {
+		try (Connection connection = DriverManager.getConnection("jdbc:mysql://35.228.88.14:3306/custdb",
+				Config.username, Config.password)) {
 			Statement statement = connection.createStatement();
 			ResultSet resultSet = statement.executeQuery("select * from ItemID");
 			while (resultSet.next()) {
@@ -35,20 +35,27 @@ public class ItemDaoMysql implements Dao<Item> {
 				items.add(ItemIDA);
 			}
 		} catch (Exception e) {
-
+			for (StackTraceElement ele : e.getStackTrace()) {
+				logger.debug(ele);
+			}
+			logger.error(e.getMessage());
 		}
 		return items;
 	}
 
 	public void create(Item item) {
-		try (Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/ims", Config.username,
-				Config.password)) {
+		try (Connection connection = DriverManager.getConnection("jdbc:mysql://35.228.88.14:3306/custdb",
+				Config.username, Config.password)) {
 			Statement statement = connection.createStatement();
 			statement.executeUpdate(
 					"insert into items(itemID,name,qtd) values('" + item.getId() + "','" + item.getName() + "')");
 		} catch (Exception e) {
-
+			for (StackTraceElement ele : e.getStackTrace()) {
+				logger.debug(ele);
+			}
+			logger.error(e.getMessage());
 		}
+
 	}
 
 	public void delete(long ItemID) {
@@ -60,7 +67,10 @@ public class ItemDaoMysql implements Dao<Item> {
 			System.out.println("Delete complete ");
 			connection.close();
 		} catch (Exception e) {
-			logger.info(e);
+			for (StackTraceElement ele : e.getStackTrace()) {
+				logger.debug(ele);
+			}
+			logger.error(e.getMessage());
 		}
 
 	}
@@ -75,17 +85,10 @@ public class ItemDaoMysql implements Dao<Item> {
 			stmt.execute();
 			System.out.println("Update complete");
 		} catch (Exception e) {
-			logger.info(e);
+			for (StackTraceElement ele : e.getStackTrace()) {
+				logger.debug(ele);
+			}
+			logger.error(e.getMessage());
 		}
-	
 	}
-	
-	
-
-	@Override
-	public void delete(Item t) {
-		// TODO Auto-generated method stub
-		
-	}
-
 }

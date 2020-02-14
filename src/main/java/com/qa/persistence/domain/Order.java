@@ -4,10 +4,12 @@ public class Order {
 	
 	private long id;
 	private int customerId;
+	private Double orderTotal;
 
-	public Order(long id, int customerId) {
+	public Order(int customerId, Double orderTotal) {
 		this.id = id;
 		this.customerId = customerId;
+		this.setOrderTotal(orderTotal);
 	}
 
 	public int getCustomerId() {
@@ -29,6 +31,14 @@ public class Order {
 	public void add(Order orders) {
 		// TODO Auto-generated method stub
 		
+	}
+
+	public Double getOrderTotal() {
+		return orderTotal;
+	}
+
+	public void setOrderTotal(Double orderTotal) {
+		this.orderTotal = orderTotal;
 	}
 
 	

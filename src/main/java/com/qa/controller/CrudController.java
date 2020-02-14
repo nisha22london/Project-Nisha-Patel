@@ -1,5 +1,7 @@
 package com.qa.controller;
 
+import java.util.List;
+
 /**
  * Create, Read, Update and Delete controller.
  * Takes in inputs for each action to be sent to a service class
@@ -7,7 +9,7 @@ package com.qa.controller;
 
 public interface CrudController<T> {
     
-    void readAll();
+	List<T> readAll();
      
     void create();
      
@@ -15,4 +17,5 @@ public interface CrudController<T> {
      
     void delete();
 
+   
 }
