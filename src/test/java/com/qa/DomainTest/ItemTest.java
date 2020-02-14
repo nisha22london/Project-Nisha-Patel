@@ -1,115 +1,124 @@
-package com.qa.DomainTest;
+//package com.qa.DomainTest;
+//
+//import static org.junit.Assert.assertEquals;
+//import static org.junit.Assert.assertFalse;
+//import static org.junit.Assert.assertNotNull;
+//import static org.junit.Assert.assertNull;
+//import static org.junit.Assert.assertTrue;
+//
+//import org.junit.Before;
+//import org.junit.Test;
+//
+//import com.qa.persistence.domain.Item;
+//
+//public class ItemTest{
+//		private Item item;
+//		private Item other;
+//		@Before
+//		public void setUp() {
+//			item = new Item(1L, "A", 1f, 1L);
+//			other = new Item(1L, "A", 1f, 1L);
+//		}
+//		@Test
+//		public void settersTest() {
+//			assertNotNull(item.getId());
+//			assertNotNull(item.getName());
+//			assertNotNull(item.getValue());
+//			assertNotNull(item.getQuantiy());
+//			
+//			
+//			item.setName(null);
+//			assertNull(item.getName());
+//			
+//		
+//			
+//		}
+//		@Test
+//		public void equalsWithNull() {
+//			assertFalse(item.equals(null));
+//		}
+//		@Test
+//		public void equalsWithDifferentObject() {
+//			assertFalse(item.equals(new Object()));
+//		}
+//		@Test
+//		public void createProductWithId() {
+//			assertEquals(1L, item.getId(), 0);
+//			assertEquals("A", item.getName());
+//			assertEquals("B", item.getQuantiy());
+//			assertEquals("C", item.getName());
+//		}
+//		@Test
+//		public void checkEquality() {
+//			assertTrue(item.equals(item));
+//		}
+//		@Test
+//		public void checkEqualityBetweenDifferentObjects() {
+//			assertFalse(item.equals(other));
+//		}
+//		@Test
+//		public void productNameNullButOtherNameNotNull() {
+//			item.setName(null);
+//			assertFalse(item.equals(other));
+//		}
+//		@Test
+//		public void productNamesNotEqual() {
+//			other.settName("Q");
+//			assertFalse(item.equals(other));
+//		}
+//		@Test
+//		public void checkEqualityBetweenDifferentObjectsNullName() {
+//			item.setName(null);
+//			other.setName(null);
+//			assertFalse(item.equals(other));
+//		}
+//		@Test
+//		public void nullId() {
+//			item.setId((Long) null);
+//			assertFalse(item.equals(other));
+//		}
+//		@Test
+//		public void nullIdOnBoth() {
+//			item.setId((Long) null);
+//			other.setId(null);
+//			assertTrue(item.equals(other));
+//		}
+//		@Test
+//		public void otherIdDifferent() {
+//			other.setId(2L);
+//			assertFalse(item.equals(other));
+//		}
+//		@Test
+//		public void nullQuantity() {
+//			item.setQuantiy(null);
+//			assertFalse(item.equals(other));
+//		}
+//		@Test
+//		public void nullQuantityOnBoth() {
+//			item.setQuantiy(null);
+//			other.setQuantiy(null);
+//			assertTrue(item.equals(other));
+//		}
+//		@Test
+//		public void otherQuantityDifferent() {
+//			other.setQuantiy(2L);
+//			assertFalse(item.equals(other));
+//		}
+//		@Test
+//		public void constructorWithoutId() {
+//			Item item = new Item("A", 1L, 1.00);
+//			assertNull(item.getId());
+//			assertNotNull(item.getProductName());
+//			assertNotNull(item.getQuantiy());
+//			assertNotNull(item.getName());
+//		}
+//		@Test
+//		public void toStringTest() {
+//			String toString = "id: 1 , Product name: B , quantity: 2 , value: 1.00";
+//			assertEquals(toString, item.toString());
+//		}
+//	}
 
-public class ItemTest {
-	public class ItemTest {
-		private Item item;
-		private Item other;
-		@Before
-		public void setUp() {
-			item = new Item(1L, "A", 1L, 1.00);
-			other = new Item(1L, "A", 1L, 1.00);
-		}
-		@Test
-		public void settersTest() {
-			assertNotNull(item.getId());
-			assertNotNull(item.getProductName());
-			assertNotNull(item.getQuantity());
-			assertNotNull(item.getPrice());
-			item.setId(null);
-			assertNull(item.getId());
-			item.setProductName(null);
-			assertNull(item.getProductName());
-			item.setQuantity(null);
-			assertNull(item.getQuantity());
-			item.setPrice(null);
-			assertNull(item.getPrice());
-		}
-		@Test
-		public void equalsWithNull() {
-			assertFalse(item.equals(null));
-		}
-		@Test
-		public void equalsWithDifferentObject() {
-			assertFalse(item.equals(new Object()));
-		}
-		@Test
-		public void createProductWithId() {
-			assertEquals(1L, item.getId(), 0);
-			assertEquals("A", item.getProductName());
-			assertEquals("B", item.getQuantity());
-			assertEquals("C", item.getPrice());
-		}
-		@Test
-		public void checkEquality() {
-			assertTrue(item.equals(item));
-		}
-		@Test
-		public void checkEqualityBetweenDifferentObjects() {
-			assertFalse(item.equals(other));
-		}
-		@Test
-		public void productNameNullButOtherNameNotNull() {
-			item.setProductName(null);
-			assertFalse(item.equals(other));
-		}
-		@Test
-		public void productNamesNotEqual() {
-			other.setProductName("Q");
-			assertFalse(item.equals(other));
-		}
-		@Test
-		public void checkEqualityBetweenDifferentObjectsNullName() {
-			item.setProductName(null);
-			other.setProductName(null);
-			assertFalse(item.equals(other));
-		}
-		@Test
-		public void nullId() {
-			item.setId(null);
-			assertFalse(item.equals(other));
-		}
-		@Test
-		public void nullIdOnBoth() {
-			item.setId(null);
-			other.setId(null);
-			assertTrue(item.equals(other));
-		}
-		@Test
-		public void otherIdDifferent() {
-			other.setId(2L);
-			assertFalse(item.equals(other));
-		}
-		@Test
-		public void nullQuantity() {
-			item.setQuantity(null);
-			assertFalse(item.equals(other));
-		}
-		@Test
-		public void nullQuantityOnBoth() {
-			item.setQuantity(null);
-			other.setQuantity(null);
-			assertTrue(item.equals(other));
-		}
-		@Test
-		public void otherQuantityDifferent() {
-			other.setQuantity(2L);
-			assertFalse(item.equals(other));
-		}
-		@Test
-		public void constructorWithoutId() {
-			Item item = new Item("A", 1L, 1.00);
-			assertNull(item.getId());
-			assertNotNull(item.getProductName());
-			assertNotNull(item.getQuantity());
-			assertNotNull(item.getPrice());
-		}
-		@Test
-		public void toStringTest() {
-			String toString = "id: 1 , Product name: B , quantity: 2 , value: 1.00";
-			assertEquals(toString, item.toString());
-		}
-	}
-}
 
 		
 	

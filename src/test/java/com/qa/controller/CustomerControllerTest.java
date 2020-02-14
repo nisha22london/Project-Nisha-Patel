@@ -37,29 +37,16 @@ public class CustomerControllerTest {
 		assertEquals(customers, customerController.readAll());
 	}
 
-	@Test
-	public void createTest() {
-		String Name = "M";
-		String Address = "Street";
-		Mockito.doReturn(Name, Address).when(customerController).getInput();
-		customerController.create();
-		Mockito.verify(customerServices, Mockito.times(1)).create(new Customer(Name, Address));
-	}
-	
-	/**
-	 *
-	 */
 //	@Test
-//	public void updateTest() {
-//		int id = 1;
-//		String Name = "Rhys";
-//		String Address = "Thompson";
-//		Mockito.doReturn(id,Name,Address).when(customerController).getInput();
-//		Customer customer = new Customer(L1,Name,Address);
-//		Mockito.when(customerServices.update(id, customer)).thenReturn(customer);
-//		assertEquals(customer, customerController.update());
+//	public void createTest() {
+//		String Name = "M";
+//		String Address = "Street";
+//		Mockito.doReturn(Name, Address).when(customerController).getInput();
+//		customerController.create();
+//		Mockito.verify(customerServices, Mockito.times(1)).create(new Customer(Name, Address));
 //	}
 //	
+
 	
 
 	
