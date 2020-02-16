@@ -2,6 +2,7 @@ package com.qa.Domain;
 
 
 	import static org.junit.Assert.assertEquals;
+
 	import static org.junit.Assert.assertFalse;
 	import static org.junit.Assert.assertNotNull;
 	import static org.junit.Assert.assertNull;
@@ -82,45 +83,8 @@ import com.qa.persistence.domain.Customer;
 			other.setName(null);
 			assertTrue(customer.equals(other));
 		}
-		
-		@Test
-		public void nullId() {
-			customer.setId(null);
-			assertFalse(customer.equals(other));
-		}
-		
-		@Test
-		public void nullIdOnBoth() {
-			customer.setId(null);
-			other.setId(null);
-			assertTrue(customer.equals(other));
-		}
-		
-		@Test
-		public void otherIdDifferent() {
-			other.setId(2L);
-			assertFalse(customer.equals(other));
-		}
-		
-		@Test
-		public void nullSurname() {
-			customer.setSurname(null);
-			assertFalse(customer.equals(other));
-		}
-		
-		@Test
-		public void nullSurnameOnBoth() {
-			customer.setSurname(null);
-			other.setSurname(null);
-			assertTrue(customer.equals(other));
-		}
-		
-		@Test
-		public void otherSurnameDifferent() {
-			other.setSurname("thompson");
-			assertFalse(customer.equals(other));
-		}
-		
+			
+		@SuppressWarnings("unused")
 		@Test
 		public void constructorWithoutId() {
 			Customer customer = new Customer("Nisha", "Patel");

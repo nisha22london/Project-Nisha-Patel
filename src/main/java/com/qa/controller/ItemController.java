@@ -10,7 +10,7 @@ import com.qa.utils.Utils;
 
 public class ItemController implements CrudController<Item> {
 
-	public static final Logger LOGGER = Logger.getLogger(CustomerController.class);
+	public static final Logger LOGGER = Logger.getLogger(ItemController.class);
 
 	private CrudServices<Item> itemService;
 
@@ -27,13 +27,14 @@ public class ItemController implements CrudController<Item> {
 	}
 
 	public void create() {
-		LOGGER.info("Please enter a Item ID number");
-		String ItemID = Utils.getInput();
-		long longg = Long.parseLong(ItemID);
-		LOGGER.info("Please enter your name");
+		LOGGER.info("Please enter a item name");
 		String name = Utils.getInput();
+		LOGGER.info("Please enter a item quantity");
+		Long quantity = Long.valueOf(Utils.getInput());
+		LOGGER.info("Please enter a item value");
+		Double value = Double.valueOf(Utils.getInput());
+		itemService.create(new Item(name, quantity, value));
 		LOGGER.info("Item created");
-		itemService.create(new Item(longg, name));
 	}
 
 	public void update() {
@@ -41,18 +42,19 @@ public class ItemController implements CrudController<Item> {
 		Long ItemID = Long.valueOf(Utils.getInput());
 		LOGGER.info("Please enter Item name");
 		String name = Utils.getInput();
+		LOGGER.info("Please enter a item quantity");
+		Long quantity = Long.valueOf(Utils.getInput());
 		LOGGER.info("Please enter Item value");
-		Long value = Long.getLong(Utils.getInput());
-		itemService.update(ItemID, new Item(value, name));
+		Double value = Double.valueOf(Utils.getInput());
+		itemService.update(ItemID, new Item(name, quantity, value));
 		LOGGER.info("Item updated");
 	}
 
 	public void delete() {
 		LOGGER.info("Please enter ID ");
-		long id = Long.valueOf(Utils.getInput());
-		String name = Utils.getInput();
-		itemService.delete(id);
-		LOGGER.info("order deleted");
+		long itemID = Long.valueOf(Utils.getInput());
+		itemService.delete(itemID);
+		LOGGER.info("Item deleted");
 	}
 
 }

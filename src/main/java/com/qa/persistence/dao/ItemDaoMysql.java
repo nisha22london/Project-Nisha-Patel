@@ -1,6 +1,7 @@
 package com.qa.persistence.dao;
 
 import java.sql.Connection;
+
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -10,36 +11,35 @@ import java.util.List;
 
 import org.apache.log4j.Logger;
 
-import com.qa.controller.CustomerController;
-import com.qa.persistence.domain.Customer;
+import com.qa.controller.ItemController;
 import com.qa.persistence.domain.Item;
 import com.qa.utils.Config;
 
 public class ItemDaoMysql implements Dao<Item> {
-	public static final Logger logger = Logger.getLogger(CustomerController.class);
+	public static final Logger logger = Logger.getLogger(ItemController.class);
 
 	private Connection connection;
 
 	public List<Item> readAll() {
+		
 		ArrayList<Item> items = new ArrayList<Item>();
 		try (Connection connection = DriverManager.getConnection("jdbc:mysql://35.228.88.14:3306/custdb",
 				Config.username, Config.password)) {
 			Statement statement = connection.createStatement();
-			ResultSet resultSet = statement.executeQuery("select * from ItemID");
+			ResultSet resultSet = statement.executeQuery("select * from items");
 			while (resultSet.next()) {
-				Long ItemID = resultSet.getLong("ItemID");
+				
+				Long ItemID = resultSet.getLong("itemID");
 				String name = resultSet.getString("name");
-				long qtd = resultSet.getLong("qtd");
-				float price = resultSet.getFloat("price");
-				Item ItemIDA = new Item(ItemID, name, price, qtd);
-				items.add(ItemIDA);
+				Long qty = resultSet.getLong("qty");
+				Double price = resultSet.getDouble("price");
+				items.add(new Item(ItemID, name, qty, price));
+				logger.info("The item table has been read");
 			}
 		} catch (Exception e) {
-			for (StackTraceElement ele : e.getStackTrace()) {
-				logger.debug(ele);
+			e.printStackTrace();
+			
 			}
-			logger.error(e.getMessage());
-		}
 		return items;
 	}
 
@@ -47,48 +47,44 @@ public class ItemDaoMysql implements Dao<Item> {
 		try (Connection connection = DriverManager.getConnection("jdbc:mysql://35.228.88.14:3306/custdb",
 				Config.username, Config.password)) {
 			Statement statement = connection.createStatement();
-			statement.executeUpdate(
-					"insert into items(itemID,name,qtd) values('" + item.getId() + "','" + item.getName() + "')");
+			statement.executeUpdate("insert into items(name,qty,price) values('" + item.getName() + "','" + item.getQuantiy() + "','" + item.getValue() + "')");
 		} catch (Exception e) {
-			for (StackTraceElement ele : e.getStackTrace()) {
-				logger.debug(ele);
+			e.printStackTrace();
 			}
-			logger.error(e.getMessage());
+	
 		}
 
-	}
 
-	public void delete(long ItemID) {
-		String sql = "DELETE FROM item WHERE ItemID = ?";
-		try {
+	public void delete(long itemID) {
+		String sql = "DELETE FROM items WHERE itemID = ?";
+		try (Connection connection = DriverManager.getConnection("jdbc:mysql://35.228.88.14:3306/custdb",
+				Config.username, Config.password)){
 			PreparedStatement stmt = connection.prepareStatement(sql);
-			stmt.setLong(1, ItemID);
+			stmt.setLong(1, itemID);
 			stmt.execute();
-			System.out.println("Delete complete ");
-			connection.close();
+			logger.info("Delete complete");
 		} catch (Exception e) {
-			for (StackTraceElement ele : e.getStackTrace()) {
-				logger.debug(ele);
-			}
-			logger.error(e.getMessage());
+			e.printStackTrace();
+		
 		}
 
 	}
 
 	public void update(long id, Item item) {
-		String sql = "UPDATE item set itemID = ?,name = ? where qtd = ?";
-		try {
+		String sql = "UPDATE items set name = ?, qty = ?, price = ? where itemID = ?";
+		try (Connection connection = DriverManager.getConnection("jdbc:mysql://35.228.88.14:3306/custdb",
+				Config.username, Config.password)){
 			PreparedStatement stmt = connection.prepareStatement(sql);
-			stmt.setLong(1, item.getId());
-			stmt.setString(2, item.getName());
-			stmt.setLong(3, id);
+			stmt.setString(1, item.getName());
+			stmt.setLong(2, item.getQuantiy());
+			stmt.setDouble(3, item.getValue());
+			stmt.setLong(4, id);
 			stmt.execute();
-			System.out.println("Update complete");
+			logger.info("Update complete");
 		} catch (Exception e) {
-			for (StackTraceElement ele : e.getStackTrace()) {
-				logger.debug(ele);
+			e.printStackTrace();
 			}
-			logger.error(e.getMessage());
+		
 		}
-	}
+	
 }

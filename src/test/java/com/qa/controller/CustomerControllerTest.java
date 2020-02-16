@@ -1,6 +1,7 @@
 package com.qa.controller;
 
 import static org.junit.Assert.assertEquals;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -20,7 +21,7 @@ public class CustomerControllerTest {
 
 	@Mock
 	private CustomerServices customerServices;
-	
+
 	@InjectMocks
 	@Spy
 	private CustomerController customerController;
@@ -43,18 +44,17 @@ public class CustomerControllerTest {
 		customerController.create();
 		Mockito.verify(customerServices, Mockito.times(1)).create(new Customer(Name, Address));
 	}
-	
+
 	/**
 	 *
 	 */
 
-	
-@Test
-public void deleteTest() {
+	@Test
+	public void deleteTest() {
 		String id = "1";
-	Mockito.doReturn(id).when(customerController).getInput();
-	customerController.delete();
-	Mockito.verify(customerServices, Mockito.timeout(1)).delete(1L);
-}
+		Mockito.doReturn(id).when(customerController).getInput();
+		customerController.delete();
+		Mockito.verify(customerServices, Mockito.timeout(1)).delete(1L);
+	}
 
 }

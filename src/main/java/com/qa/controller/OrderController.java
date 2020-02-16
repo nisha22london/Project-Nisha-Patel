@@ -1,6 +1,5 @@
 package com.qa.controller;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.log4j.Logger;
@@ -30,10 +29,12 @@ public class OrderController implements CrudController<Order> {
 	public void create() {
 		LOGGER.info("Please enter customerID");
 		int customerID = Integer.valueOf(Utils.getInput());
+		LOGGER.info("Please enter order quantity");
+		Long orderQuantity = Long.valueOf(Utils.getInput());
 		LOGGER.info("Please enter order price");
 		Double orderTotal = Double.valueOf(Utils.getInput());
 		LOGGER.info("Order created");
-		orderService.create(new Order(customerID, orderTotal));	
+		orderService.create(new Order(customerID, orderQuantity, orderTotal));	
 
 	}
 	
@@ -46,11 +47,13 @@ public class OrderController implements CrudController<Order> {
 		Long OrderID = Long.valueOf(Utils.getInput());
 		LOGGER.info("Please enter customer id to update");
 		int customerId = Integer.valueOf(Utils.getInput());
+		LOGGER.info("Please enter date to update");
+		Long orderQuantity = Long.valueOf(Utils.getInput());
 		LOGGER.info("Please enter order price to update");
 		Double orderTotal = Double.valueOf(Utils.getInput());
-		orderService.update(OrderID, new Order(customerId, orderTotal));
-		LOGGER.info("order created");
-		orderService.create(new Order(customerId, orderTotal));
+		orderService.update(OrderID, new Order(customerId, orderQuantity, orderTotal));
+		LOGGER.info("order updated");
+
 
 	}
 

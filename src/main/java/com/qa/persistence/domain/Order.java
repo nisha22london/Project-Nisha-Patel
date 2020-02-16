@@ -4,11 +4,12 @@ public class Order {
 	
 	private long id;
 	private int customerId;
+	private long orderQuantity; 
 	private Double orderTotal;
 
-	public Order(int customerId, Double orderTotal) {
-		this.id = id;
+	public Order(int customerId, Long orderQuantity, Double orderTotal) {
 		this.customerId = customerId;
+		this.orderQuantity = orderQuantity;
 		this.setOrderTotal(orderTotal);
 	}
 
@@ -28,11 +29,6 @@ public class Order {
 		this.id = id;
 	}
 
-	public void add(Order orders) {
-		// TODO Auto-generated method stub
-		
-	}
-
 	public Double getOrderTotal() {
 		return orderTotal;
 	}
@@ -41,6 +37,17 @@ public class Order {
 		this.orderTotal = orderTotal;
 	}
 
-	
+	public String toString() {
+		return "order ID : " + id + " , " + "customer ID: " + customerId + " , " + "order quantity: " + orderQuantity + " , "+ "order total: " + orderTotal;
+	}
+
+	public Long getOrderQuantity() {
+		return orderQuantity;
+	}
+
+	public void setOrderQuantity(Long orderQuantity) {
+		this.orderQuantity = orderQuantity;
+	}
+
 
 }

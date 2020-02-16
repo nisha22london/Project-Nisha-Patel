@@ -21,19 +21,19 @@ public class OrderServices implements CrudServices<Order> {
 	}
 
 	@Override
-	public void create(Order t) {
-		 orderDao.create(t);
+	public void create(Order order) {
+		 orderDao.create(order);
 	}
 
 	@Override
-	public void update(long id, Order t) {
-		orderDao.update(id, t);
+	public void update(long id, Order order) {
+		orderDao.update(id, order);
 
 	}
 
 	@Override
-	public void delete(long t) {
-		orderDao.delete(t);
+	public void delete(long id) {
+		orderDao.delete(id);
 
 	}
 

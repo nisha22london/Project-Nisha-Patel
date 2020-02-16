@@ -6,6 +6,7 @@ import org.apache.log4j.Logger;
 
 import com.qa.persistence.domain.Customer;
 import com.qa.services.CrudServices;
+import com.qa.utils.Utils;
 
 
 /**
@@ -42,9 +43,9 @@ public class CustomerController implements CrudController<Customer> {
 
 	public void create() {
 		LOGGER.info("Please enter a first name");
-		String firstName = getInput();
+		String firstName = Utils.getInput();
 		LOGGER.info("Please enter the address");
-		String address = getInput();
+		String address = Utils.getInput();
 		LOGGER.info("Customer created");
 		customerService.create(new Customer(firstName, address));
 
@@ -55,12 +56,12 @@ public class CustomerController implements CrudController<Customer> {
 	 */
 
 	public void update() {
-		LOGGER.info("Please enter the id of the order you would like to update");
-		Long id = Long.valueOf(getInput());
+		LOGGER.info("Please enter the id of the customer you would like to update");
+		Long id = Long.valueOf(Utils.getInput());
 		LOGGER.info("Please enter a first name");
-		String Name = getInput();
+		String Name = Utils.getInput();
 		LOGGER.info("Please enter the address");
-		String Address = getInput();
+		String Address = Utils.getInput();
 		customerService.update(id, new Customer(Name, Address));
 		LOGGER.info("Customer updated");
 
@@ -72,14 +73,17 @@ public class CustomerController implements CrudController<Customer> {
 
 	public void delete() {
 		LOGGER.info("Please enter ID ");
-		String id = getInput();
+		String id = Utils.getInput();
 		int intt = Integer.parseInt(id);
 		customerService.delete(intt);
 		LOGGER.info("Customer deleted");
 	}
 
-	public String getInput() {
-		return getInput();
+	public void getInput() {
+		// TODO Auto-generated method stub
+		
 	}
+
+
 
 }

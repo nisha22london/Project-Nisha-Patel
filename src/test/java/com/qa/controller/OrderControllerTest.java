@@ -25,7 +25,7 @@ import com.qa.services.OrderServices;
 		public void readAllTest() {
 			OrderController orderController = new OrderController(orderServices);
 			List<Order> orders = new ArrayList<Order>();
-		    orders.add(new Order(1, 2.99));
+		    orders.add(new Order(1, 1L, 2.99));
 			Mockito.when(orderServices.readAll()).thenReturn(orders);
 			assertEquals(orders, orderController.readAll());
 		}

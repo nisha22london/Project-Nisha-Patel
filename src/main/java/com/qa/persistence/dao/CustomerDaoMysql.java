@@ -24,8 +24,8 @@ public class CustomerDaoMysql implements Dao<Customer> {
 		
 		ArrayList<Customer> customers = new ArrayList<Customer>();
 		try (Connection connection = DriverManager.getConnection("jdbc:mysql://35.228.88.14:3306/custdb",
-				Config.username, Config.password); Statement statement = connection.createStatement();) {
-			System.out.println("hello");
+				Config.username, Config.password)){
+		    Statement statement = connection.createStatement();
 			ResultSet resultSet = statement.executeQuery("select * from customers");
 
 			while (resultSet.next()) {
@@ -33,8 +33,6 @@ public class CustomerDaoMysql implements Dao<Customer> {
 				int customerID = resultSet.getInt("customerID");
 				String Name = resultSet.getString("Name");
 				String Address = resultSet.getString("Address");
-
-//				Customer customer = new Customer(id, Name);
 				customers.add(new Customer(customerID, Name, Address));
 				logger.info("The customer table has been read");
 			}
@@ -56,7 +54,7 @@ public class CustomerDaoMysql implements Dao<Customer> {
 					+ customer.getAddress() + "')");
 			logger.info("The customer has been created");
 		} catch (Exception e) {
-			logger.error(e);
+		     e.printStackTrace();
 		} finally {
 		}
 
@@ -64,47 +62,41 @@ public class CustomerDaoMysql implements Dao<Customer> {
 	;
 
 	public void update(long id, Customer customer) {
-		String sql = "UPDATE customer set Name = ?, Address=?, where id = ?";
-		try {
+		String sql = "UPDATE customers set Name = ?, Address=? where customerID = ?";
+		try (Connection connection = DriverManager.getConnection("jdbc:mysql://35.228.88.14:3306/custdb",
+				Config.username, Config.password)) {
 			PreparedStatement stmt = connection.prepareStatement(sql);
 			stmt.setString(1, customer.getName());
 			stmt.setString(2, customer.getAddress());
 			stmt.setLong(3, id);
-			stmt.execute();
+			stmt.executeUpdate();
 			logger.info("The customer has been updated");
 		} catch (Exception e) {
-			logger.error("The customer has not been updated");
-		} finally {
+			e.printStackTrace();
 		}
-
+		
 		}
 			
 ;
 	
 	
-	public void delete (Customer customer) {
+	public void delete(long customerId) {
 		// TODO Auto-generated method stub
-		String sql = "DELETE FROM customer WHERE id = ?";
-		try {
+		String sql = "DELETE FROM customers WHERE customerID = ?";
+		try (Connection connection = DriverManager.getConnection("jdbc:mysql://35.228.88.14:3306/custdb",
+				Config.username, Config.password)){
 			PreparedStatement stmt = connection.prepareStatement(sql);
-			stmt.setLong(1, customer.getId());
-			stmt.execute();
+			stmt.setLong(1, customerId);
+			stmt.executeUpdate();
 			logger.info("The customer has been deleted");
-			connection.close();
+			
 		} catch (Exception e) {
-			logger.error("The customer has not been deleted");
-
-		} finally {
-		}
-		
+			e.printStackTrace();
 
 		}
 
-	@Override
-	public void delete(long t) {
-		// TODO Auto-generated method stub
-		
-	}
+		}
+
 		
 		
 	}
